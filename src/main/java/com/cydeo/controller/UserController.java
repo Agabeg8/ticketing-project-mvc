@@ -13,9 +13,11 @@ public class UserController {
     @GetMapping("/create")
     public String createUser(Model model){
 
+
+
         model.addAttribute("user", new UserDTO());
 
-        //model.addAttribute("role" LISTOFROLES);
+        //model.addAttribute("roles" ,LISTOFROLES);
 
         return "user/create";
     }
