@@ -1,7 +1,5 @@
 package com.cydeo.service.impl;
 
-import com.cydeo.dto.UserDTO;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +19,6 @@ public abstract class AbstractMapService<T,ID> {
     List<T> findAll(){
         return new ArrayList<>(map.values());
     }
-
-    public abstract void update(UserDTO object);
 
     T findById(ID id){
         return map.get(id);

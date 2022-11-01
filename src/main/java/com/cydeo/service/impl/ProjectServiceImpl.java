@@ -1,7 +1,6 @@
 package com.cydeo.service.impl;
 
 import com.cydeo.dto.ProjectDTO;
-import com.cydeo.dto.UserDTO;
 import com.cydeo.service.ProjectService;
 import org.springframework.stereotype.Service;
 
@@ -22,18 +21,13 @@ public class ProjectServiceImpl extends AbstractMapService<ProjectDTO,String> im
     }
 
     @Override
-    public void update(UserDTO object) {
-        super.update(object.getUserName(),);
-    }
-
-    @Override
     public void update(ProjectDTO object) {
         super.update(object.getProjectCode(),object);
     }
 
     @Override
     public void deleteById(String id) {
-        super.deleteById(id);
+       super.deleteById(id);
     }
 
     @Override
