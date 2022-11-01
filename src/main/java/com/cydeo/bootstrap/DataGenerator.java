@@ -1,23 +1,29 @@
 package com.cydeo.bootstrap;
 
+import com.cydeo.dto.ProjectDTO;
 import com.cydeo.dto.RoleDTO;
 import com.cydeo.dto.UserDTO;
 import com.cydeo.enums.Gender;
+import com.cydeo.enums.Status;
+import com.cydeo.service.ProjectService;
 import com.cydeo.service.RoleService;
 import com.cydeo.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 
 @Component
 public class DataGenerator implements CommandLineRunner {
 
     RoleService roleService;
     UserService userService;
+    ProjectService projectService;
 
-    public DataGenerator(RoleService roleService, UserService userService) {
+    public DataGenerator(RoleService roleService, UserService userService, ProjectService projectService) {
         this.roleService = roleService;
         this.userService = userService;
+        this.projectService = projectService;
     }
 
     @Override
@@ -28,27 +34,26 @@ public class DataGenerator implements CommandLineRunner {
         RoleDTO managerRole = new RoleDTO(2L,"Manager");
         RoleDTO employeeRole = new RoleDTO(3L,"Employee");
 
-
         roleService.save(adminRole);
         roleService.save(managerRole);
         roleService.save(employeeRole);
 
-        UserDTO user1 = new UserDTO("John", "Ksy",
-                "john@cydeo.com", "Abc1", true, "45656765767", managerRole, Gender.MALE);
-        UserDTO user2 = new UserDTO("Mike", "Smith",
-                "mike@cydeo.com", "Abc2", true, "54654656546", adminRole, Gender.MALE);
-        UserDTO user3 = new UserDTO("Day", "Can",
-                "day@cydeo.com", "Abc3", true, "45654654654", employeeRole, Gender.MALE);
-        UserDTO user4 = new UserDTO("Alice", "Com",
-                "alice@cydeo.com", "Abc4", true, "56464656655", managerRole, Gender.FEMALE);
-        UserDTO user5 = new UserDTO("Maria", "Defoe",
-                "maria@cydeo.com", "Abc5", true, "67676767676", employeeRole, Gender.FEMALE);
-        UserDTO user6 = new UserDTO("hella", "Ksy",
-                "hella@cydeo.com", "Abc6", true, "23242343432", employeeRole, Gender.FEMALE);
-        UserDTO user7 = new UserDTO("Bred", "Fool",
-                "bred@cydeo.com", "Abc7", true, "12323332323", employeeRole, Gender.MALE);
-        UserDTO user8 = new UserDTO("Nai", "Kia",
-                "nai@cydeo.com", "Abc8", true, "99898798999", employeeRole, Gender.MALE);
+        UserDTO user1 = new UserDTO("John", "Kesy",
+                "john@cydeo.com", "Abc1", true, "7459684532", managerRole, Gender.MALE);
+        UserDTO user5 = new UserDTO("Mike", "Smith",
+                "mike@cydeo.com", "Abc2", true, "7459684532", adminRole, Gender.MALE);
+        UserDTO user2 = new UserDTO("Delisa",
+                "Norre", "delisa@cydeo.com", "123", true, "8567412358", managerRole, Gender.FEMALE);
+        UserDTO user3 = new UserDTO("Craig", "Jark",
+                "craig@cydeo.com", "Abc3", true, "7777775566", employeeRole, Gender.MALE);
+        UserDTO user4 = new UserDTO("Shaun",
+                "Hayns", "shaun@cydeo.com", "Abc4", true, "3256987412", managerRole, Gender.MALE);
+        UserDTO user6 = new UserDTO("Elizebeth",
+                "Loren", "elizebeth@cydeo.com", "Abc4", true, "5306987412", employeeRole, Gender.FEMALE);
+        UserDTO user7 = new UserDTO("Maria",
+                "Ada", "maria@cydeo.com", "Abc4", true, "9996987412", employeeRole, Gender.FEMALE);
+        UserDTO user8 = new UserDTO("Bill",
+                "Matt", "bill@cydeo.com", "Abc4", true, "8881239846", employeeRole, Gender.MALE);
 
         userService.save(user1);
         userService.save(user2);
@@ -58,6 +63,26 @@ public class DataGenerator implements CommandLineRunner {
         userService.save(user6);
         userService.save(user7);
         userService.save(user8);
+
+        ProjectDTO project1 = new ProjectDTO("Spring MVC","PR001",user1, LocalDate.now(),LocalDate.now().plusDays(25),"Creating Controllers", Status.OPEN);
+        ProjectDTO project2 = new ProjectDTO("Spring ORM","PR002",user2, LocalDate.now(),LocalDate.now().plusDays(10),"Creating Database", Status.IN_PROGRESS);
+        ProjectDTO project3 = new ProjectDTO("Spring Container","PR003",user1, LocalDate.now(),LocalDate.now().plusDays(32),"Creating Container", Status.IN_PROGRESS);
+
+        projectService.save(project1);
+        projectService.save(project2);
+        projectService.save(project3);
+
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }
